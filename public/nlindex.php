@@ -17,15 +17,15 @@
     <div class="bg-particles" id="particles"></div>
 
     <!-- Control Panel -->
-    <div class="control-panel">
-        <a href="./nlindex.php" class="nl">
+    <a href="./index.php" class="ENG">
+        <div class="control-panel">
             <button class="control-button lang-toggle" id="langToggle">
-                <span class="lang-text">NL</span>
+                <span class="lang-text">ENG</span>
             </button>
-        </a>
-        <button class="control-button theme-toggle" id="themeToggle">
-            <i class="fas fa-sun"></i>
-        </button>
+    </a>
+    <button class="control-button theme-toggle" id="themeToggle">
+        <i class="fas fa-sun"></i>
+    </button>
     </div>
 
     <!-- Mobile menu button -->
@@ -47,15 +47,15 @@
             <ul class="nav-list">
                 <li class="nav-item active" data-target="home">
                     <i class="fas fa-home"></i>
-                    <span data-en="Home" data-nl="Home">Home</span>
+                    <span data-en="Home" data-nl="Home">Thuis</span>
                 </li>
                 <li class="nav-item" data-target="about">
                     <i class="fas fa-user"></i>
-                    <span data-en="About Me" data-nl="Over Mij">About Me</span>
+                    <span data-en="About Me" data-nl="Over Mij">Over mij</span>
                 </li>
                 <li class="nav-item" data-target="projects">
                     <i class="fas fa-code"></i>
-                    <span data-en="Projects" data-nl="Projecten">Projects</span>
+                    <span data-en="Projects" data-nl="Projecten">Projecten</span>
                 </li>
             </ul>
 
@@ -78,17 +78,17 @@
             <section class="home" id="home">
                 <div class="hero-content">
                     <h1 class="typing-text">
-                        <span class="typing-line">&lt; <span data-en="Hello, I'm" data-nl="Hallo, ik ben">Hello, I'm</span> <span class="highlight">Olgun Hristov</span> /&gt;</span>
+                        <span class="typing-line">&lt; <span data-en="Hello, I'm" data-nl="Hallo, ik ben">Hallo, Ik ben</span> <span class="highlight">Olgun Hristov</span> /&gt;</span>
                     </h1>
                     <h2 class="typing-text">
-                        <span class="typing-line">&lt; <span data-en="A Software Developer Student" data-nl="Een Software Ontwikkelaar Student">A Software Developer Student</span> /&gt;</span>
+                        <span class="typing-line">&lt; <span data-en="A Software Developer Student" data-nl="Een Software Ontwikkelaar Student">Een Software Developer Student</span> /&gt;</span>
                     </h2>
                     <p class="typing-text">
-                        <span class="typing-line">&lt; <span data-en="Welcome to my portfolio site - Here you can see my projects and who I am" data-nl="Welkom op mijn portfolio site - Hier kun je mijn projecten zien en wie ik ben">Welcome to my portfolio site - Here you can see my projects and who I am</span> /&gt;</span>
+                        <span class="typing-line">&lt; <span data-en="Welcome to my portfolio site - Here you can see my projects and who I am" data-nl="Welkom op mijn portfolio site - Hier kun je mijn projecten zien en wie ik ben">Welcome op mijn portfolio site - Hier kan je mijn projecten zien en wie ik ben</span> /&gt;</span>
                     </p>
                     <div class="cta-buttons typing-text">
-                        <a href="#projects" class="btn btn-primary" data-en="View My Work" data-nl="Bekijk Mijn Werk">View My Work</a>
-                        <a href="#about" class="btn btn-outline" data-en="About Me" data-nl="Over Mij">About Me</a>
+                        <a href="#projects" class="btn btn-primary" data-en="View My Work" data-nl="Bekijk Mijn Werk">Zie mijn werk</a>
+                        <a href="#about" class="btn btn-outline" data-en="About Me" data-nl="Over Mij">Over mij</a>
                         <a href="./img/CVOlgun.png" class="btn btn-outline" target="_blank" data-en="Download CV" data-nl="Download CV">Download CV</a>
                     </div>
                 </div>
@@ -97,14 +97,14 @@
             <!-- About Section -->
             <section class="about" id="about">
                 <div class="about-card">
-                    <h2 data-en="About Me" data-nl="Over Mij">About Me</h2>
+                    <h2 data-en="About Me" data-nl="Over Mij">Over mij</h2>
                     <div class="about-content">
                         <div class="about-avatar">
                             <i class="fas fa-code"></i>
                         </div>
                         <div class="about-text">
-                            <p data-en="I'm a passionate software developer student at Mediacollege Amsterdam, specializing in front-end development with a interest in robotics." data-nl="Ik ben een gepassioneerde software ontwikkelaar student aan het Mediacollege Amsterdam, gespecialiseerd in front-end ontwikkeling met interesse in robotica.">I'm a passionate software developer student at Mediacollege Amsterdam, specializing in front-end development with a interest in robotics.</p>
-                            <p data-en="I enjoy creating cool and interesting interfaces. My goal is to bridge the gap between beautiful design and functional code." data-nl="Ik vind het leuk om coole en interessante interfaces te maken. Mijn doel is om de kloof tussen mooi ontwerp en functionele code te overbruggen.">I enjoy creating cool and interesting interfaces. My goal is to bridge the gap between beautiful design and functional code.</p>
+                            <p data-en="I'm a passionate software developer student at Mediacollege Amsterdam, specializing in front-end development with a interest in robotics." data-nl="Ik ben een gepassioneerde software ontwikkelaar student aan het Mediacollege Amsterdam, gespecialiseerd in front-end ontwikkeling met interesse in robotica.">Ik ben een gepassioneerde software ontwikkelaar student aan het Mediacollege Amsterdam, gespecialiseerd in front-end ontwikkeling met interesse in robotica.</p>
+                            <p data-en="I enjoy creating cool and interesting interfaces. My goal is to bridge the gap between beautiful design and functional code." data-nl="Ik vind het leuk om coole en interessante interfaces te maken. Mijn doel is om de kloof tussen mooi ontwerp en functionele code te overbruggen.">Ik vind het leuk om coole en interessante interfaces te maken. Mijn doel is om de kloof tussen mooi ontwerp en functionele code te overbruggen.</p>
                         </div>
                     </div>
                     <div class="skills-section">
@@ -150,13 +150,13 @@
             <!-- Projects Section -->
             <section class="projects" id="projects">
                 <div class="projects-container">
-                    <h2 data-en="My Projects" data-nl="Mijn Projecten">My Projects</h2>
+                    <h2 data-en="My Projects" data-nl="Mijn Projecten">Mijn Projecten</h2>
                     <div class="projects-grid">
                         <div class="project-card">
                             <img src="./img/greenline.png" alt="Project 1" class="ProjectsImg">
                             <div class="project-content">
                                 <h3 class="project-title">GreenLine</h3>
-                                <p class="project-description" data-en="I had a school project to work with LBS (a school in sweden). To make a game and a website where you can download the game" data-nl="Ik had een schoolproject om samen te werken met LBS (een school in Zweden). Om een spel en een website te maken waar je het spel kunt downloaden">I had a school project to work with LBS (a school in sweden). To make a game and a website where you can download the game</p>
+                                <p class="project-description" data-en="I had a school project to work with LBS (a school in sweden). To make a game and a website where you can download the game" data-nl="Ik had een schoolproject om samen te werken met LBS (een school in Zweden). Om een spel en een website te maken waar je het spel kunt downloaden">Ik had een schoolproject om samen te werken met LBS (een school in Zweden). Om een spel en een website te maken waar je het spel kunt downloaden</p>
                                 <div class="project-tech">
                                     <span class="tech-tag">HTML</span>
                                     <span class="tech-tag">CSS</span>
@@ -173,7 +173,7 @@
                             <img src="./img/facecord.png" alt="Project 2" class="ProjectsImgCord">
                             <div class="project-content">
                                 <h3 class="project-title">Facecord</h3>
-                                <p class="project-description" data-en="For a school project I needed to make a social media site with the same interface as Facebook and the color scheme of Discord" data-nl="Voor een schoolproject moest ik een social media site maken met dezelfde interface als Facebook en het kleurenschema van Discord">For a school project I needed to make a social media site with the same interface as Facebook and the color scheme of Discord</p>
+                                <p class="project-description" data-en="For a school project I needed to make a social media site with the same interface as Facebook and the color scheme of Discord" data-nl="Voor een schoolproject moest ik een social media site maken met dezelfde interface als Facebook en het kleurenschema van Discord">Voor een schoolproject moest ik een social media site maken met dezelfde interface als Facebook en het kleurenschema van Discord</p>
                                 <div class="project-tech">
                                     <span class="tech-tag">HTML</span>
                                     <span class="tech-tag">CSS</span>
@@ -190,7 +190,7 @@
                             <img src="./img/cardgame.png" alt="Project 3" class="ProjectsImg">
                             <div class="project-content">
                                 <h3 class="project-title" data-en="Card Game" data-nl="Kaartspel">Card Game</h3>
-                                <p class="project-description" data-en="I made a card game with HTML JS and CSS it is a dutch version of UNO called pesten you play against a NPC try it out!" data-nl="Ik heb een kaartspel gemaakt met HTML JS en CSS het is een Nederlandse versie van UNO genaamd pesten je speelt tegen een NPC probeer het uit!">I made a card game with HTML JS and CSS it is a dutch version of UNO called pesten you play against a NPC try it out!</p>
+                                <p class="project-description" data-en="I made a card game with HTML JS and CSS it is a dutch version of UNO called pesten you play against a NPC try it out!" data-nl="Ik heb een kaartspel gemaakt met HTML JS en CSS het is een Nederlandse versie van UNO genaamd pesten je speelt tegen een NPC probeer het uit!">Ik heb een kaartspel gemaakt met HTML JS en CSS het is een Nederlandse versie van UNO genaamd pesten je speelt tegen een NPC probeer het uit!</p>
                                 <div class="project-tech">
                                     <span class="tech-tag">HTML</span>
                                     <span class="tech-tag">JavaScript</span>
@@ -206,7 +206,7 @@
                             <img src="./img/falppyposter.jpg" alt="Project 4" class="ProjectsImgBird">
                             <div class="project-content">
                                 <h3 class="project-title">FlappyBird</h3>
-                                <p class="project-description" data-en="Me and 2 other classmates made a flappy bird with JS and Arduino with a sensor so every time you move the bird moves with you look at the live game play!" data-nl="Ik en 2 andere klasgenoten hebben een flappy bird gemaakt met JS en Arduino met een sensor zodat elke keer dat je beweegt de vogel met je meebeweegt kijk naar de live gameplay!">Me and 2 other classmates made a flappy bird with JS and Arduino with a sensor so every time you move the bird moves with you look at the live game play!</p>
+                                <p class="project-description" data-en="Me and 2 other classmates made a flappy bird with JS and Arduino with a sensor so every time you move the bird moves with you look at the live game play!" data-nl="Ik en 2 andere klasgenoten hebben een flappy bird gemaakt met JS en Arduino met een sensor zodat elke keer dat je beweegt de vogel met je meebeweegt kijk naar de live gameplay!">Ik en 2 andere klasgenoten hebben een flappy bird gemaakt met JS en Arduino met een sensor zodat elke keer dat je beweegt de vogel met je meebeweegt kijk naar de live gameplay!</p>
                                 <div class="project-tech">
                                     <span class="tech-tag">Arduino</span>
                                     <span class="tech-tag">JavaScript</span>
@@ -215,7 +215,7 @@
                                 </div>
                                 <div class="project-links">
                                     <a target="_blank" href="./img/falppybird.mp4" class="project-link primary" data-en="Live Demo" data-nl="Live Demo">Live Demo</a>
-                                    <a target="_blank" href="https://github.com/SaadSaedd/M6BO.git" class="project-link secondary">GitHub</a>
+                                    <a  target="_blank" href="https://github.com/SaadSaedd/M6BO.git" class="project-link secondary">GitHub</a>
 
                                 </div>
                             </div>
@@ -225,7 +225,7 @@
                             <img src="./img/pokeapi.png" alt="Project 5" class="ProjectsImgpoke">
                             <div class="project-content">
                                 <h3 class="project-title">Pokemon API</h3>
-                                <p class="project-description" data-en="I made a Pokemon API catch game so every time you refresh your page a pokemon appears and you can try to catch it try it out!" data-nl="Ik heb een Pokemon API vangspel gemaakt zodat elke keer als je je pagina ververst er een pokemon verschijnt en je kunt proberen hem te vangen probeer het uit!">I made a Pokemon API catch game so every time you refresh your page a pokemon appears and you can try to catch it try it out!</p>
+                                <p class="project-description" data-en="I made a Pokemon API catch game so every time you refresh your page a pokemon appears and you can try to catch it try it out!" data-nl="Ik heb een Pokemon API vangspel gemaakt zodat elke keer als je je pagina ververst er een pokemon verschijnt en je kunt proberen hem te vangen probeer het uit!">Ik heb een Pokemon API vangspel gemaakt zodat elke keer als je je pagina ververst er een pokemon verschijnt en je kunt proberen hem te vangen probeer het uit!</p>
                                 <div class="project-tech">
                                     <span class="tech-tag">API</span>
                                     <span class="tech-tag">JavaScript</span>
@@ -234,6 +234,7 @@
                                 </div>
                                 <div class="project-links">
                                     <a target="_blank" href="https://36889.hosts2.ma-cloud.nl/Portfolio/pokemon" class="project-link primary" data-en="Live Demo" data-nl="Live Demo">Live Demo</a>
+
                                 </div>
                             </div>
                         </div>
@@ -245,7 +246,7 @@
 
     <!-- Scroll indicator -->
     <div class="scroll-indicator" id="scrollIndicator">
-        <span data-en="Scroll to explore" data-nl="Scroll om te ontdekken">Scroll to explore</span>
+        <span data-en="Scroll to explore" data-nl="Scroll om te ontdekken">Scroll voor meer</span>
         <i class="fas fa-chevron-down"></i>
     </div>
 

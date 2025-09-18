@@ -1,4 +1,4 @@
-// script.js — Robust Portfolio JS (drop-in replacement)
+// Enhanced Portfolio JS with Dutch Translation and Dark Mode
 
 class PortfolioApp {
     constructor() {
@@ -9,19 +9,28 @@ class PortfolioApp {
         this.sidebar = document.getElementById('sidebar');
         this.mobileMenu = document.getElementById('mobileMenu');
         this.scrollIndicator = document.getElementById('scrollIndicator');
-
-        // Expose instance for external use (resize handler etc.)
+        this.langToggle = document.getElementById('langToggle');
+        this.themeToggle = document.getElementById('themeToggle');
+        
+        // State
+        this.currentLang = 'en';
+        this.currentTheme = 'light';
+        
+        // Expose instance for external use
         window.portfolioApp = this;
 
-        // Init
+        // Initialize
         this.init();
     }
 
     init() {
+        // Load saved preferences
+        this.loadPreferences();
+        
+        // Initialize features
         try {
             this.createParticles();
         } catch (e) {
-            // graceful degradation if particles fail
             console.warn('Particles init failed:', e);
         }
 
@@ -32,12 +41,108 @@ class PortfolioApp {
         this.setupMobileMenu();
         this.setupScrollIndicator();
         this.setupIntersectionObserver();
+        this.setupLanguageToggle();
+        this.setupThemeToggle();
+        
+        // Apply initial theme and language
+        this.applyTheme(this.currentTheme);
+        this.applyLanguage(this.currentLang);
     }
 
-    // ---------- Visual helpers ----------
+    // ---------- Theme Management ----------
+    setupThemeToggle() {
+        if (!this.themeToggle) return;
+        
+        this.themeToggle.addEventListener('click', () => {
+            this.currentTheme = this.currentTheme === 'light' ? 'dark' : 'light';
+            this.applyTheme(this.currentTheme);
+            this.savePreferences();
+        });
+    }
+
+    applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        const icon = this.themeToggle?.querySelector('i');
+        if (icon) {
+            icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+        }
+        this.currentTheme = theme;
+    }
+
+    // ---------- Language Management ----------
+    setupLanguageToggle() {
+        if (!this.langToggle) return;
+        
+        this.langToggle.addEventListener('click', () => {
+            this.currentLang = this.currentLang === 'en' ? 'nl' : 'en';
+            this.applyLanguage(this.currentLang);
+            this.savePreferences();
+        });
+    }
+
+    applyLanguage(lang) {
+        // Update language toggle button
+        const langText = this.langToggle?.querySelector('.lang-text');
+        if (langText) {
+            langText.textContent = lang === 'en' ? 'NL' : 'EN';
+        }
+
+        // Update HTML lang attribute
+        document.documentElement.setAttribute('lang', lang);
+
+        // Update all translatable elements
+        const translatableElements = document.querySelectorAll('[data-en][data-nl]');
+        translatableElements.forEach(element => {
+            const translation = element.getAttribute(`data-${lang}`);
+            if (translation) {
+                element.textContent = translation;
+            }
+        });
+
+        this.currentLang = lang;
+    }
+
+    // ---------- Preferences Management ----------
+    savePreferences() {
+        const preferences = {
+            theme: this.currentTheme,
+            language: this.currentLang
+        };
+        
+        try {
+            // Use cookies as fallback since localStorage isn't available
+            document.cookie = `portfolioPrefs=${JSON.stringify(preferences)}; path=/; max-age=31536000`;
+        } catch (e) {
+            console.warn('Could not save preferences:', e);
+        }
+    }
+
+    loadPreferences() {
+        try {
+            // Try to load from cookies
+            const cookies = document.cookie.split(';');
+            const prefsCookie = cookies.find(cookie => cookie.trim().startsWith('portfolioPrefs='));
+            
+            if (prefsCookie) {
+                const prefsValue = prefsCookie.split('=')[1];
+                const preferences = JSON.parse(decodeURIComponent(prefsValue));
+                
+                this.currentTheme = preferences.theme || 'light';
+                this.currentLang = preferences.language || 'en';
+            }
+        } catch (e) {
+            console.warn('Could not load preferences:', e);
+            // Use defaults
+            this.currentTheme = 'light';
+            this.currentLang = 'en';
+        }
+    }
+
+    // ---------- Visual Helpers ----------
     createParticles() {
         const particlesContainer = document.getElementById('particles');
         if (!particlesContainer) return;
+        
         const particleCount = 50;
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
@@ -46,6 +151,7 @@ class PortfolioApp {
             const left = Math.random() * 100;
             const animationDelay = Math.random() * 6;
             const animationDuration = Math.random() * 3 + 3;
+            
             particle.style.cssText = `
                 width: ${size}px;
                 height: ${size}px;
@@ -54,16 +160,16 @@ class PortfolioApp {
                 animation-delay: ${animationDelay}s;
                 animation-duration: ${animationDuration}s;
             `;
+            
             particlesContainer.appendChild(particle);
         }
     }
 
-    // Make <li class="nav-item"> keyboard-accessible & tabbable
+    // ---------- Navigation ----------
     enhanceNavAccessibility() {
         this.navItems.forEach(item => {
             item.setAttribute('tabindex', item.getAttribute('tabindex') || '0');
             item.setAttribute('role', 'button');
-            // handle Enter/Space to "click" the item
             item.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
@@ -73,11 +179,9 @@ class PortfolioApp {
         });
     }
 
-    // ---------- Navigation (event delegation) ----------
     setupNavigationDelegation() {
         if (!this.navList) return;
 
-        // Use delegation so clicks on inner <i> or <span> still register
         this.navList.addEventListener('click', (e) => {
             const item = e.target.closest('.nav-item');
             if (!item) return;
@@ -86,10 +190,10 @@ class PortfolioApp {
         });
     }
 
-    // Handler used by delegation and keyboard events
     handleNavItemClick(item) {
         const targetId = item.dataset.target;
         if (!targetId) return;
+        
         const target = document.getElementById(targetId);
         if (!target) return;
 
@@ -108,38 +212,40 @@ class PortfolioApp {
             }
         }
 
-        // Update URL hash without jumping (nice-to-have)
+        // Update URL hash
         try {
             history.replaceState && history.replaceState(null, '', `#${targetId}`);
         } catch (_) { /* ignore */ }
     }
 
-    // Also handle CTA anchor links (a[href^="#"]) — similar behavior
     setupCTALinks() {
         document.querySelectorAll('a[href^="#"]').forEach(link => {
             link.addEventListener('click', (e) => {
                 const href = link.getAttribute('href');
                 if (!href || href === '#') return;
+                
                 e.preventDefault();
                 const id = href.substring(1);
                 const target = document.getElementById(id);
                 if (!target) return;
+                
                 target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 const correspondingNavItem = document.querySelector(`[data-target="${id}"]`);
                 if (correspondingNavItem) this.updateActiveNavItem(correspondingNavItem);
-                try { history.replaceState && history.replaceState(null, '', `#${id}`); } catch (_) {}
+                
+                try { 
+                    history.replaceState && history.replaceState(null, '', `#${id}`); 
+                } catch (_) {}
             });
         });
     }
 
-    // ---------- Scrollspy ----------
+    // ---------- Scroll Spy ----------
     setupScrollSpy() {
         if (!this.sections || !this.sections.length) return;
 
-        // We'll mark a section active when it crosses near the top of viewport.
         const observerOptions = {
             root: null,
-            // when the section's top is within the top 45% of the viewport it becomes active
             rootMargin: '0px 0px -55% 0px',
             threshold: 0
         };
@@ -158,7 +264,7 @@ class PortfolioApp {
 
         this.sections.forEach(section => observer.observe(section));
 
-        // set initial active item based on current scroll position (run once)
+        // Set initial active item
         setTimeout(() => {
             const fromTop = window.scrollY + 10;
             for (const section of this.sections) {
@@ -173,7 +279,6 @@ class PortfolioApp {
     }
 
     updateActiveNavItem(activeItem) {
-        // refresh navItems in case DOM changed
         this.navItems = Array.from(document.querySelectorAll('.nav-item'));
         this.navItems.forEach(item => item.classList.remove('active'));
         if (activeItem && typeof activeItem.classList !== 'undefined') {
@@ -181,7 +286,7 @@ class PortfolioApp {
         }
     }
 
-    // ---------- Mobile menu ----------
+    // ---------- Mobile Menu ----------
     setupMobileMenu() {
         if (!this.mobileMenu || !this.sidebar) return;
 
@@ -208,7 +313,7 @@ class PortfolioApp {
         });
     }
 
-    // ---------- Scroll indicator ----------
+    // ---------- Scroll Indicator ----------
     setupScrollIndicator() {
         if (!this.scrollIndicator) return;
 
@@ -220,29 +325,28 @@ class PortfolioApp {
         window.addEventListener('scroll', () => {
             const home = document.getElementById('home');
             if (!home) return;
+            
             const homeBottom = home.offsetTop + home.offsetHeight;
             const scrollPos = window.pageYOffset || document.documentElement.scrollTop;
             this.scrollIndicator.style.opacity = (scrollPos > homeBottom - 200) ? '0' : '1';
         });
     }
 
-    // move to the next section after current viewport position
     scrollToNextSection() {
         const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-        // find first section that starts below current scroll + 10px
         const next = this.sections.find(s => {
             const top = s.getBoundingClientRect().top + window.pageYOffset;
             return top > currentScroll + 10;
         });
+        
         if (next) {
             next.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else {
-            // fallback: scroll to bottom
             window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
     }
 
-    // ---------- Animate on scroll ----------
+    // ---------- Animate on Scroll ----------
     setupIntersectionObserver() {
         const animateOnScrollOptions = {
             root: null,
@@ -264,7 +368,7 @@ class PortfolioApp {
     }
 }
 
-/* Initialization using requestIdleCallback where available */
+// ---------- Initialization ----------
 function initializeWhenIdle() {
     if ('requestIdleCallback' in window) {
         requestIdleCallback(() => new PortfolioApp());
@@ -279,34 +383,31 @@ if (document.readyState === 'loading') {
     initializeWhenIdle();
 }
 
-/* Resize handling (debounced) */
+// ---------- Resize Handling ----------
 let resizeTimer;
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
         if (window.portfolioApp && typeof window.portfolioApp.setupScrollSpy === 'function') {
-            // re-run scrollspy setup to adjust for layout changes
             window.portfolioApp.setupScrollSpy();
         }
     }, 250);
 });
 
-// Get the button:
-let mybutton = document.getElementById("myBtn");
+// ---------- Scroll to Top Functionality ----------
+let scrollTopButton = document.getElementById("scrollTopBtn");
 
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
+if (scrollTopButton) {
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            scrollTopButton.style.display = "block";
+        } else {
+            scrollTopButton.style.display = "none";
+        }
+    };
 
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
-
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    scrollTopButton.addEventListener('click', function() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    });
 }
