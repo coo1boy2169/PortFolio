@@ -10,9 +10,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <script src="./main.js" defer></script>
+
 </head>
 
 <body>
+
+
     <!-- Background particles -->
     <div class="bg-particles" id="particles"></div>
 
@@ -215,7 +219,7 @@
                                 </div>
                                 <div class="project-links">
                                     <a target="_blank" href="./img/falppybird.mp4" class="project-link primary" data-en="Live Demo" data-nl="Live Demo">Live Demo</a>
-                                    <a  target="_blank" href="https://github.com/SaadSaedd/M6BO.git" class="project-link secondary">GitHub</a>
+                                    <a target="_blank" href="https://github.com/SaadSaedd/M6BO.git" class="project-link secondary">GitHub</a>
 
                                 </div>
                             </div>
@@ -249,6 +253,36 @@
         <span data-en="Scroll to explore" data-nl="Scroll om te ontdekken">Scroll voor meer</span>
         <i class="fas fa-chevron-down"></i>
     </div>
+
+    <!-- Contact Section -->
+<section class="contact" id="contact">
+  <div class="contact-container">
+    <h2 data-en="Get In Touch" data-nl="Neem Contact Op">Neem Contact Op</h2>
+    <p class="contact-intro" data-en="Feel free to reach out to me through this form or via my social links below. I’d love to hear from you!" data-nl="Neem gerust contact met mij op via dit formulier of via mijn sociale links hieronder. Ik hoor graag van je!">
+      Neem gerust contact met mij op via dit formulier of via mijn sociale links hieronder. Ik hoor graag van je!
+    </p>
+
+    <form class="contact-form" id="contactForm">
+      <div class="form-group">
+        <label for="name" data-en="Your Name" data-nl="Jouw Naam">Jouw Naam</label>
+        <input type="text" id="name" name="name" placeholder="Naam" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email" data-en="Your Email" data-nl="Jouw Email">Jouw Email</label>
+        <input type="email" id="email" name="email" placeholder="jouw@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label for="message" data-en="Message" data-nl="Bericht">Bericht</label>
+        <textarea id="message" name="message" rows="5" placeholder="Schrijf hier je bericht..." required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary" data-en="Send Message" data-nl="Verstuur Bericht">Verstuur Bericht</button>
+    </form>
+  </div>
+</section>
+
 
     <script src="script.js"></script>
 </body>
